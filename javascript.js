@@ -1,65 +1,53 @@
 let computerChoice;
-let playerSelection = prompt("Please Enter Rock, Paper or Scissors").toLowerCase();
+let userInput;
 
-
-console.log(playerSelection);
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3)
 
     if (choice === 0){
-        computerChoice = "Rock"
+        computerChoice = "rock"
     }
     else if (choice === 1){
-        computerChoice = "Paper"
+        computerChoice = "paper"
     }
     else {
-        computerChoice = "Scissors"
+        computerChoice = "scissors"
     }
-
-    console.log(computerChoice)
+    return computerChoice;
 }
 
-getComputerChoice();
+function getPlayerChoice(){
+    let playerChoice = prompt("Please Enter Rock, Paper or Scissors").toLowerCase();
+    return playerChoice;
+}
 
-function getPlayerSelection(){
-
-    if (answer === 'scissors'){
-        if (computerChoice === 'Paper'){
-            console.log("You Win, Scissors beats Paper")
-        }
-        if (computerChoice === 'Scissors'){
-            console.log("It's a Tie!")
-        }
-        else {
-            console.log("You Lose, Rock beats Paper")
-        }
+function playRound(playerSelection, computerSelection){
+    if (playerSelection == computerSelection){
+        return "Tie";
     }
-    else if (answer === 'paper'){
-        if (computerChoice === 'Paper'){
-            console.log("It's a Tie!")
-        }
-        else if (computerChoice === "Scissors"){
-            console.log("You Lose, Scissors beats Paper")
-        }
-        else {
-            console.log("You Win, Paper beats Rock")
-        }
-    }
-    else if (answer === 'rock') {
-        if (computerChoice === "Paper"){
-            console.log("You Lose, Paper beats Rock")
-        }
-        else if (computerChoice === "Scissors"){
-            console.log("You Win, Rock beats Paper")
-        }
-        else{
-            console.log("It's a Tie!")
-        }
+    else if (
+        (playerSelection == "rock" && computerSelection == 'scissors') ||
+        (playerSelection == "paper" && computerSelection == 'rock') ||
+        (playerSelection == "scissors" && computerSelection == 'paper')
+    ){
+        return "Player";
     }
     else {
-        console.log("Incorrect Value.")
+        return "Computer"
     }
 }
 
-getPlayerSelection();
 
+
+function game(){
+    for (let i = 1; i<=5; i++){
+
+        playerSelection = getPlayerChoice();
+        computerSelection = getComputerChoice();
+        console.log(playerSelection + computerSelection);
+        console.log(playRound(playerSelection,computerSelection));
+    }
+
+}
+
+game();
