@@ -50,4 +50,8 @@ function game(){
 
 }
 
+function scoreKeeer(){
+    
+}
+
 game();
